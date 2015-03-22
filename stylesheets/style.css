@@ -1,0 +1,15 @@
+.container {
+	padding: 2em;
+}
+.hidden {
+	display: none;
+}
+div.col-xs-1 {
+	font-size: 3em;
+}
+.glyphicon {
+	padding-top: 0.2em;
+}
+.size-talbero .gliphicon {
+	font-size: 4em;
+}
