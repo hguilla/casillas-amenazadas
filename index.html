@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf8" >
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf8">
 	<title>Amenazas</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
@@ -30,7 +28,7 @@
 						</select>
 					</div>
 					<h3>
-					<label for="piezaSelect" class="col-xs-2 control-label col-xs-offset-2">Pieza</label>
+					<label for="piezaSelect" class="col-xs-2 control-label">Pieza</label>
 						<i
 							id="piezaSelect"
 							class="glyphicon"
@@ -44,7 +42,7 @@
 				</div>
 			</form>
 		</div>
-		<div class="tablero well">
+		<div>
 			<div class="row fila-tablero" ng-repeat="fila in ctrl.tablero track by $index">
 				<div class="col-xs-1 columna-tablero" ng-repeat="casilla in fila track by $index">
 					<i ng-class='{
