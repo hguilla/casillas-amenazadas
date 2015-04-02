@@ -1,0 +1,72 @@
+.controles {
+    margin: auto;
+    width: 400px;
+}
+.controles form {
+    text-align: left;
+    margin-top: 1em;
+}
+.controles form div {
+    margin-top: 0.2em;
+    display: inline-block;
+}
+.controles form div label {
+    color: #2B2523 !important;
+    margin-top: 0.2em;
+    position: relative;
+    display: inline-block;
+}
+.controles form div > * {
+    display: block;
+    margin-right: 4em;
+}
+.controles form div input {
+    margin-top: 1.8em;
+    width: 6em;
+    -webkit-border-radius: 0.4em;
+    -moz-border-radius: 0.4em;
+    border-radius: 0.4em;
+    box-shadow: 0 0 1em rgba(0, 0, 0, .6);
+    text-align: center;
+    -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0 0 1em rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.6);
+}
+.controles form div span {
+    font-size: 36px;
+    width: 50px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+    cursor: pointer;
+    height: 50px;
+}
+.tablero {
+    background-image: url('../images/wood5.png');
+    height: 400px;
+    width: 400px;
+    margin: auto;
+    margin-top: 3rem;
+    box-shadow: 0 0 1em rgba(0, 0, 0, .6);
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+.tablero .fila .casilla {
+    color: #222;
+    font-size: 36px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+    float: left;
+    width: 50px;
+    height: 50px;
+}
+.tablero .fila:nth-child(odd) .casilla:nth-child(even),
+.tablero .fila:nth-child(even) .casilla:nth-child(odd) {
+    background: rgba(0, 0, 0, .4);
+}
+.tablero .fila:nth-child(odd) .casilla:nth-child(even).amenazada,
+.tablero .fila:nth-child(even) .casilla:nth-child(odd).amenazada {
+    background: rgba(200, 0, 0, 1);
+}
+.tablero .fila:nth-child(odd) .casilla:nth-child(odd).amenazada,
+.tablero .fila:nth-child(even) .casilla:nth-child(even).amenazada {
+    background: rgba(216, 0, 0, 1);
+    border-color: black;
+}

@@ -1,10 +1,12 @@
 angular.module('AmenazasApp')
 .controller('TableroCtrl', [function () {
-	var self = this;
+	var self = this,
+		CABALLO = '♞',
+		REINA   = '♛',
+		EMPTY   = '';
 
 	self.checkAmenazas = function() {
-		var c,
-			columnas,
+		var columnas,
 			fila,
 			filas;
 		self.clearAmenazas();
@@ -16,7 +18,7 @@ angular.module('AmenazasApp')
 			for (columna in self.tablero[fila]) {
 				if (! self.tablero[fila].hasOwnProperty(columna)) { continue };
 				columna = parseInt(columna);
-				if (self.tablero[fila][columna] === 0) {
+				if (self.tablero[fila][columna] === EMPTY) {
 					continue;
 				} else {
 					self.checkAmenaza(fila, columna);
@@ -25,7 +27,7 @@ angular.module('AmenazasApp')
 		}
 	};
 	self.checkAmenaza = function(fila, columna) {
-		if (self.tablero[fila][columna] === 1) {
+		if (self.tablero[fila][columna] === CABALLO) {
 			self.checkAmenazaDelCaballo(fila, columna);
 		} else {
 			self.checkAmenazaDeLaReina(fila, columna);
@@ -79,7 +81,6 @@ angular.module('AmenazasApp')
 				fila,
 				(columna + i) % size_tablero
 			);
-
 			if ((fila + i < size_tablero) && (columna + i < size_tablero)) {
 				self.setAmenazada(fila+i, columna+i);
 			}
@@ -92,7 +93,6 @@ angular.module('AmenazasApp')
 			if ((fila - i >= 0) && (columna - i >= 0)) {
 				self.setAmenazada(fila-i, columna-i);
 			}
-
 		};
 	};
 	self.clearAmenazas = function() {
@@ -120,39 +120,46 @@ angular.module('AmenazasApp')
 		for (f = 0; f < s; f++) {
 			tablero[f] = [];
 			for (c = 0; c < s; c++) {
-				tablero[f][c] = 0;
+				tablero[f][c] = EMPTY;
 			};
 		}
 		self.tablero = tablero;
+		$('.tablero').height(s * 50);
+		$('.tablero').width(s * 50);
+		$('.controles').width(s * 50);
 	};
 	self.getCasilla = function(f, c) {
 		var fila, casilla;
-		fila = $('.fila-tablero')[f];
-		return $(fila).find('.columna-tablero')[c];
+		fila = $('.fila')[f];
+		return $(fila).find('.casilla')[c];
 	};
 	self.init = function() {
 		self.available_sizes = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 		self.size_tablero = self.available_sizes[5];
 		self.createTablero();
-		self.pieza_actual = 1;
+		self.pieza_actual = CABALLO;
 	};
 	self.setAmenazada = function(f, c) {
-		$(self.getCasilla(f, c)).addClass('text-danger');
+		$(self.getCasilla(f, c)).addClass('amenazada');
 	};
 	self.toggleCasilla =function(fila, casilla, index) {
 		console.log(casilla);
 		if (casilla !== self.pieza_actual) {
 			fila[index] = self.pieza_actual;
 		} else {
-			fila[index] = 0;
+			fila[index] = EMPTY;
 		}
 		self.checkAmenazas();
 	};
 	self.togglePieza = function() {
-		self.pieza_actual = ((self.pieza_actual + 2) % 2) + 1;
+		if (self.pieza_actual === CABALLO) {
+			self.pieza_actual = REINA;
+		} else {
+			self.pieza_actual = CABALLO;
+		}
 	};
 	self.unsetAmenzada = function(fila, columna) {
-		$(self.getCasilla(f, c)).removeClass('text-danger')
+		$(self.getCasilla(f, c)).removeClass('amenazada')
 	};
 
 	self.init();
